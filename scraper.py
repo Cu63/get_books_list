@@ -1,7 +1,7 @@
-# -Добавить обработку страниц (Кир)
+# -Добавить обработку страниц (Кир)+
 # -Сохранение в файл(Мур)
 # -Поиск по файлу(Мур)
-#
+# -Обработка ошибок(Kir)
 #
 #
 #
@@ -15,6 +15,7 @@ from urllib.error import HTTPError, URLError
 
 def get_page(url):
     html = urlopen(url)
+    print(html)
     bs = BeautifulSoup(html, 'html.parser')
     return bs
 
@@ -49,11 +50,22 @@ def main():
                   'dom-byt-dosug', 'detskaya-literatura-igry',
                   'iskusstvo-i-kultura', 'prochee']
     for cat in categories:
+        page_num = 1
         print('*' * 50)
-        url = '%s%s%s' % (prefix, cat, suffix)
+        url = '%s%s?page=%d%s' % (prefix, cat, page_num, suffix)
+        print('page %d' % page_num)
         print(url)
+
         bs = get_page(url)
-        books_list = create_books_list(bs)
+        while True:
+            books_list = create_books_list(bs)
+            page_num += 1
+            print('page %d' % page_num)
+            url = '%s%s?page=%d%s' % (prefix, cat, page_num, suffix)
+            bs = get_page(url)
+            if bs.find('a', {'class': 'nav'}, text='Следующая')['href'] == '':
+                break
+
 
 
 if __name__ == '__main__':
