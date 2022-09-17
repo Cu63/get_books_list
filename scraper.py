@@ -26,7 +26,7 @@ def create_books_list(bs):
         url = prefix + book.find('a')['href']
 
         print('Title: %s' % title)
-        print('Author: %s' % title)
+        print('Author: %s' % author)
         print('Price: %s' % price)
         print('Url: %s' % url)
 
