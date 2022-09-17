@@ -1,3 +1,12 @@
+# -Добавить обработку страниц (Кир)
+# -Сохранение в файл(Мур)
+# -Поиск по файлу(Мур)
+#
+#
+#
+#
+#
+
 from bs4 import BeautifulSoup
 import re
 from urllib.request import urlopen
