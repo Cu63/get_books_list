@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import re
 from urllib.request import urlopen
+import pandas as pd
 from urllib.error import HTTPError, URLError
 
 
@@ -12,6 +13,10 @@ def get_page(url):
 
 def create_books_list(bs):
     prefix = 'https://www.piter.com'
+    titlelist = []
+    authorlist = []
+    pricelist = []
+    urllist = []
     for book in bs.find_all('div', {'class': re.compile(
         '(grid-3 prod-block book-block )+(clear-class[0-9].)*')}):
         title = book.find('span', {'class': 'title'})
@@ -25,10 +30,27 @@ def create_books_list(bs):
             price = price.text
         url = prefix + book.find('a')['href']
 
-        print('Title: %s' % title)
-        print('Author: %s' % author)
-        print('Price: %s' % price)
-        print('Url: %s' % url)
+#        print('Title: %s' % title)
+#        print('Author: %s' % author)
+#        print('Price: %s' % price)
+#        print('Url: %s' % url)
+        titlelist.append(title)
+        authorlist.append(author)
+        pricelist.append(price)
+        urllist.append(price)
+
+    dataFrame1 = {'Title': titlelist,
+                  'author': authorlist,
+                  'price': pricelist,
+                  'url': urllist}
+
+    dataFrame2 = pd.DataFrame(dataFrame1)
+    print(dataFrame2)
+
+
+
+
+
 
 
 def main():
