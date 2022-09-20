@@ -48,6 +48,7 @@ def main():
                   'dom-byt-dosug', 'detskaya-literatura-igry',
                   'iskusstvo-i-kultura', 'prochee']
     for cat in categories:
+        print('Get books from %s' % cat)
         table = {'Title': [], 'Author': [], 'Price': [], 'Url': []}
 
 # start page
@@ -55,7 +56,6 @@ def main():
         print('*' * 50)
         url = '%s%s?page=%d%s' % (prefix, cat, page_num, suffix)
         print('page %d' % page_num)
-        print(url)
 
 # get html page
         bs = get_page(url)
