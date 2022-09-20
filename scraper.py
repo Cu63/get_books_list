@@ -32,10 +32,6 @@ def create_books_list(bs, table):
             price = price.text
         url = prefix + book.find('a')['href']
 
-#        print('Title: %s' % title)
-#        print('Author: %s' % author)
-#        print('Price: %s' % price)
-#        print('Url: %s' % url)
         table['Title'].append(title)
         table['Author'].append(author)
         table['Price'].append(price)
@@ -74,6 +70,7 @@ def main():
             # check last page
             if bs.find('a', {'class': 'nav'}, text='Следующая')['href'] == '':
                 frame = pd.DataFrame(table)
+                # frame.to_csv('%s.csv' % cat)
                 print(frame)
                 break
 
