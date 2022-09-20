@@ -70,9 +70,11 @@ def main():
             # check last page
             if bs.find('a', {'class': 'nav'}, text='Следующая')['href'] == '':
                 frame = pd.DataFrame(table)
-                # frame.to_csv('%s.csv' % cat)
+                frame.to_csv('tables/%s.csv' % cat, index=False)
                 print(frame)
                 break
+
+
 
 
 
