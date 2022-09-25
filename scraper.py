@@ -33,9 +33,9 @@ def create_books_list(bs, table):
         url = prefix + book.find('a')['href']
 
         table['Title'].append(title)
-        table['Author'].append(author)
+        table['Author'].append(author[:-4])
         table['Price'].append(price)
-        table['Url'].append(price)
+        table['Url'].append(url)
 
 
 
