@@ -12,9 +12,15 @@ def get_table(cat):
     for c in prom:
         s = c.split(';')
         book_dict.append(s)
-    for v in book_dict:
-        print(v)
+    return book_dict
 
+
+def sercher(table, keyword):
+    result = []
+    for c in table:
+        if keyword in c:
+            result.append(c)
+    return result
 
 
 def main():
@@ -24,7 +30,7 @@ def main():
         print(i+1, catigories[i][0:-4])
     catigorie = (int(input('Выбери номер категории: ')) - 1)
     keyword = input('Введи ключевое слово: ')
-    get_table(catigories[catigorie])
+    print(sercher(get_table(catigories[catigorie]), keyword))
 
 
 if __name__ == '__main__':
