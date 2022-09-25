@@ -4,7 +4,6 @@ import os
 def get_table(cat, key_word):
     lit_data = pd.read_csv('tables/%s' % cat)
 
-    print(lit_data)
 
 
 def main():
